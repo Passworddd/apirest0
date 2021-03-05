@@ -53,4 +53,12 @@ export default class User extends Model {
        */
     });
   }
+
+  passwordIsValid(password) {
+    return bcryptjs.compare(password, this.password_hash);
+    /**
+     * Retorno uma promiss do resutado da comparação para autenticação da senha
+     * utilizado no token controller
+     */
+  }
 }
