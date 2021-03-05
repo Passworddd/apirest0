@@ -1,5 +1,14 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+import './src/database'; // Chamando o index da database para ele ser executado.
+
 import express from 'express';
 import homeRoutes from './src/routes/homeRoutes';
+import userRoutes from './src/routes/userRoutes';
+
+dotenv.config();
 
 class App {
   constructor() {
@@ -29,6 +38,7 @@ class App {
 
   routes() {
     this.app.use('/', homeRoutes);
+    this.app.use('/users/', userRoutes);
   }
 }
 
