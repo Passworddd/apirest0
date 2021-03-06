@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import { resolve } from 'path';
 
 dotenv.config();
 
@@ -8,6 +9,8 @@ import express from 'express';
 import homeRoutes from './src/routes/homeRoutes';
 import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
+import alunoRoutes from './src/routes/alunoRoutes';
+import fotoRoutes from './src/routes/fotoRoutes';
 
 dotenv.config();
 
@@ -33,6 +36,9 @@ class App {
     Configuração para app.user também entender json
   */
 
+    this.app.use('/images/', express.static(resolve(__dirname, '..', 'uploads', 'images')));
+
+    this.app.use(express.static(resolve(__dirname, 'uploads')));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }
@@ -41,6 +47,8 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/users/', userRoutes);
     this.app.use('/tokens', tokenRoutes);
+    this.app.use('/alunos/', alunoRoutes);
+    this.app.use('/fotos/', fotoRoutes);
   }
 }
 

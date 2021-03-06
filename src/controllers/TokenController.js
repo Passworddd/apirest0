@@ -16,16 +16,15 @@ import User from '../models/User';
 
 class TokenController {
   async store(req, res) {
-    const { email = '', password = '' } = req.body; // Recebendo os dados do body da página.
+    const { email = '', password = '' } = req.body;
 
     if (!email || !password) {
       return res.status(401).json({
-        errors: ['Email ou senha invalido'],
+        errors: ['Credenciais inválidas'],
       });
     }
 
     const user = await User.findOne({ where: { email } });
-    // Checando se usuário com este email;
 
     if (!user) {
       return res.status(401).json({
@@ -33,9 +32,9 @@ class TokenController {
       });
     }
 
-    if (!(await user.passwordIsValid(password))) { // Se a senha do usuário não for valida.
+    if (!(await user.passwordIsValid(password))) {
       return res.status(401).json({
-        errors: ['Senha invalida'],
+        errors: ['Senha inválida'],
       });
     }
 
@@ -44,7 +43,7 @@ class TokenController {
       expiresIn: process.env.TOKEN_EXPIRATION,
     });
 
-    return res.json({ token });
+    return res.json({ token, user: { nome: user.nome, id, email } });
   }
 }
 
