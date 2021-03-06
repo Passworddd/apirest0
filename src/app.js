@@ -3,14 +3,14 @@ import { resolve } from 'path';
 
 dotenv.config();
 
-import './src/database'; // Chamando o index da database para ele ser executado.
+import './database'; // Chamando o index da database para ele ser executado.
 
 import express from 'express';
-import homeRoutes from './src/routes/homeRoutes';
-import userRoutes from './src/routes/userRoutes';
-import tokenRoutes from './src/routes/tokenRoutes';
-import alunoRoutes from './src/routes/alunoRoutes';
-import fotoRoutes from './src/routes/fotoRoutes';
+import homeRoutes from './routes/homeRoutes';
+import userRoutes from './routes/userRoutes';
+import tokenRoutes from './routes/tokenRoutes';
+import alunoRoutes from './routes/alunoRoutes';
+import fotoRoutes from './routes/fotoRoutes';
 
 dotenv.config();
 

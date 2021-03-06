@@ -1,4 +1,4 @@
-export default function (p) {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});exports. default = function (p) {
   const retorno = false;
   const letrasMaiusculas = /[A-Z]/;
   const letrasMinusculas = /[a-z]/;
