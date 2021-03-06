@@ -26,12 +26,53 @@ import Sequelize, { Model } from 'sequelize'; // Importa o Model que está dentr
 export default class Aluno extends Model { // Estou exportando Aluno e seu Model dentro do sequeliz
   static init(sequelize) { // Criar um metodo statico init
     super.init({ // Chamar o init do pai (no caso do model)
-      nome: Sequelize.STRING,
-      sobrenome: Sequelize.STRING,
-      email: Sequelize.STRING,
-      idade: Sequelize.INTEGER,
-      peso: Sequelize.FLOAT,
-      altura: Sequelize.FLOAT,
+      nome: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [3, 255],
+            msg: ['Nome precisa ter mais de 3 caracter.'],
+          },
+        },
+      },
+      sobrenome: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [3, 255],
+            msg: ['Sobrenome Precia ter mais de 3 caracter'],
+          },
+        },
+      },
+      email: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        unique: true,
+        validate: {
+          isEmail: {
+            msg: ['Email não é valido.'],
+          },
+        },
+      },
+      idade: {
+        type: Sequelize.INTEGER,
+        defaultValue: '',
+        validate: {
+          isInt: {
+            msg: ['Idade precisa ser inteiro'],
+          },
+        },
+      },
+      peso: {
+        type: Sequelize.FLOAT,
+        defaultValue: '',
+      },
+      altura: {
+        type: Sequelize.FLOAT,
+        defaultValue: '',
+      },
     }, {
       sequelize,
     });
