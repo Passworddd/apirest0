@@ -2,4 +2,6 @@
 
 const port = 3003;
 
-_app2.default.listen(process.env.PORT);
+_app2.default.listen(process.env.PORT,()=>{
+	console.log(`localhost:${process.env.PORT}` )
+});
